@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/themeprovider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="dark:bg-dark">
+      <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+       
+        {children}
+        </ThemeProvider>
+        <script src="node_modules/@material-tailwind/html/scripts/collapse.js"></script>
+         <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+        </body>
     </html>
   );
 }
